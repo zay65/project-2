@@ -9,6 +9,7 @@ const page = document.querySelector(".page");
 const itemsEachPage = 10;
 const studentList = document.querySelectorAll(".student-list")
 
+divPage.appendchild('page'); 
 /*** 
    Add your global variables that store the DOM elements you will 
    need to reference and/or manipulate. 
@@ -32,7 +33,7 @@ const showPage = (list, page) => {
 const startIndex =(page * itemsEachPage ) - itemsEachPage;
 const endIndex = page * itemsEachPage;
 for (let i = 0; i < list.length; i++) {
-   if (i >= start && i <= end) {
+   if (i >= startIndex && i <= endIndex) {
      list[i].style.display = "block";
    } else {
      list[i].style.display = "none";
@@ -42,7 +43,7 @@ for (let i = 0; i < list.length; i++) {
 
 
 
-};
+
 
 /*** 
    Create the `showPage` function to hide all of the items in the 
@@ -62,7 +63,14 @@ for (let i = 0; i < list.length; i++) {
 
 
 
-const appendPageLinks = (list) => {
+const appendPageLinks = (list) => { 
+const pagesNeeded = Math.ceil(list.length / itemsEachPage);
+const paginationDiv = document.createElement('div');
+paginationDiv.className = 'pagination';
+mainDiv.appendChild(paginationDiv);
+const ul = document.createElement('li');
+const li = ul.children;
+paginationDiv.appendChild('ul');
 
 
 
