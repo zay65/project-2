@@ -7,23 +7,9 @@ FSJS project 2 - List Filter and Pagination
 
 const page = document.querySelector(".page");
 const itemsEachPage = 10;
-const studentList = document.querySelectorAll(".student-list")
+const studentList = document.querySelector(".student-list")
 
 divPage.appendchild('page'); 
-/*** 
-   Add your global variables that store the DOM elements you will 
-   need to reference and/or manipulate. 
-   
-   But be mindful of which variables should be global and which 
-   should be locally scoped to one of the two main functions you're 
-   going to create. A good general rule of thumb is if the variable 
-   will only be used inside of a function, then it can be locally 
-   scoped to that function.
-***/
-
-
-
-
 
 
 
@@ -45,24 +31,9 @@ for (let i = 0; i < list.length; i++) {
 
 
 
-/*** 
-   Create the `showPage` function to hide all of the items in the 
-   list except for the ten you want to show.
- 
-
-   Pro Tips: 
-     - Keep in mind that with a list of 54 students, the last page 
-       will only display four.
-     - Remember that the first student has an index of 0.
-     - Remember that a function `parameter` goes in the parens when 
-       you initially define the function, and it acts as a variable 
-       or a placeholder to represent the actual function `argument` 
-       that will be passed into the parens later when you call or 
-       "invoke" the function 
-***/
 
 
-
+   
 const appendPageLinks = (list) => { 
 const pagesNeeded = Math.ceil(list.length / itemsEachPage);
 const paginationDiv = document.createElement('div');
@@ -72,16 +43,93 @@ const ul = document.createElement('li');
 const li = ul.children;
 paginationDiv.appendChild('ul');
 
+for (let i = 0; i <= pagesNeeded; i ++) {
+   const li = document.createElement("li");
+   ul.appendChild('li');
+   const a = document.createElement("a");
+   li.appendChild('a'); 
+   if (i==0) {
+      a.className = 'active';
+   }
+   a.href = '#';
+   a.textContent = i + 1;
+}
+
+ul.addEventListener('click', (e) => {
+   for (let i = 0; i < ul.children.length; i++){
+      const a = li[i].firstElementChild;
+      if (a.className === 'active'){
+       a.classList.remove('active');
+      }
+   }
+   
+   showPage(list, e.target.textContent);
+   e.target.className = 'active';
+
+});
+ 
+function includeTheSearchBar () {
+   const pageHeader = document.querySelector('.page-header');
+   const searchHeaderDiv = document.createElement('div');
+   const search = document.createElement('input');
+   const button = document.createElement('button');
+
+   searchHeaderDiv.className = 'student-search';
+   search.placeholder = 'Search for the students';
+   button.textContent = 'Search';
+ 
+   pageHeader.appendChild(searchHeaderDiv);
+   searchHeaderDiv.appendChild(search);
+   searchHeaderDiv.appendChild(button);
+ button.addEventListener ('click' , (event) => {
+      event.preventDefault();
+      makeSearch(search, studentList);
+   });
+   search.addEventListener('keyup', () => {
+      makeSearch(search, studentList);
+   });
+ };
+ const searchingFor(search,students) { 
+   const separate = search.value.toLowerCase();
+   const arr = []; 
+   noResultDiv.textContent = '';
+   if (search.value){  
+      return (studentList);
+   }
+   for (let i = 0; i < students.length; i++) {
+      const listItemName = students[i].querySelector('h3').textContent;
+      students[i].style.display = 'none';
+      if (listItemName.toLowerCase().includes(filter)) {
+         students[i].style.display = '';
+         arr.push(students[i]);
+      }  
+   } 
+   if(arr.length === 0){
+      noResultDiv.textContent = 'Data not found';
+     
+   };
+  
+  
+   pageRedo(arr);
+
+};
+
+
+const pageRedo = (arr) => {
+   const pageLinks = document.querySelector('.pagination');
+   divPage.removeChild(pageLinks);
+   showPage(arr,1);
+   appendPageLinks(arr);
+} 
+
+
+includeTheSearchBar();
+showPage(studentList, 1);
+appendPageLinks(studentList);
 
 
 }
-/*** 
-   Create the `appendPageLinks function` to generate, append, and add 
-   functionality to the pagination buttons.
-***/
 
 
 
 
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
