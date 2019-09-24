@@ -8,8 +8,8 @@ FSJS project 2 - List Filter and Pagination
 const page = document.querySelector(".page");
 const itemsEachPage = 10;
 const studentList = document.querySelector(".student-list")
+ 
 
-divPage.appendchild('page'); 
 
 
 
@@ -36,12 +36,12 @@ for (let i = 0; i < list.length; i++) {
    
 const appendPageLinks = (list) => { 
 const pagesNeeded = Math.ceil(list.length / itemsEachPage);
-const paginationDiv = document.createElement('div');
-paginationDiv.className = 'pagination';
-mainDiv.appendChild(paginationDiv);
-const ul = document.createElement('li');
+const div = document.createElement('div');
+div.className = 'pagination';
+div.appendChild(paginationDiv);
+const ul = document.createElement('ul');
 const li = ul.children;
-paginationDiv.appendChild('ul');
+div.appendChild(ul);
 
 for (let i = 0; i <= pagesNeeded; i ++) {
    const li = document.createElement("li");
@@ -89,7 +89,7 @@ function includeTheSearchBar () {
       makeSearch(search, studentList);
    });
  };
- const searchingFor(search,students) { 
+ function searchingFor(search,students) { 
    const separate = search.value.toLowerCase();
    const arr = []; 
    noResultDiv.textContent = '';
