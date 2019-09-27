@@ -20,10 +20,10 @@ const showPage = (list, page) => {
    const startIndex =(page * itemsEachPage ) - itemsEachPage;
    const endIndex = page * itemsEachPage;
    for (let i = 0; i < list.length; i++) {
-      if (i >= startIndex && i <= endIndex) {
-     list[i].style.display = "block";
-   } else {
-     list[i].style.display = "none";
+   if (i >= startIndex && i <= endIndex) {
+   list[i].style.display = "block";
+   }else {
+   list[i].style.display = "none";
    }
  }
 };
@@ -37,14 +37,14 @@ const showPage = (list, page) => {
    
 const appendPageLinks = (list) => { 
    const pagesNeeded = Math.ceil(list.length / itemsEachPage);
-      const div = document.createElement('div');
+   const div = document.createElement('div');
    div.className = 'page';
    page.appendChild(div);
    const ul = document.createElement('ul');
    const li = ul.children;
    div.appendChild(ul);
 
-for (let i = 0; i <= pagesNeeded; i ++) {
+   for (let i = 0; i <= pagesNeeded; i ++) {
    const li = document.createElement("li");
    ul.appendChild(li);
    const a = document.createElement("a");
@@ -56,11 +56,11 @@ for (let i = 0; i <= pagesNeeded; i ++) {
    a.textContent = i + 1;
 }
 
-ul.addEventListener('click', (e) => {
+   ul.addEventListener('click', (e) => {
    for (let i = 0; i < ul.children.length; i++){
-      const a = li[i].firstElementChild;
-      if (a.className === 'active'){
-       a.classList.remove('active');
+   const a = li[i].firstElementChild;
+   if (a.className === 'active'){
+     a.classList.remove('active');
       }
    }
    
@@ -69,12 +69,12 @@ ul.addEventListener('click', (e) => {
 
 });
 
- function searchingFor(search,students) { 
-      const separate = search.value.toLowerCase();
-      const arr = []; 
-      noResultDiv.textContent = '';
-      if (search.value){  
-      return (studentList);
+   function searchingFor(search,students) { 
+   const separate = search.value.toLowerCase();
+   const arr = []; 
+   noResultDiv.textContent = '';
+   if (search.value){  
+   return (studentList);
    }
    for (let i = 0; i < students.length; i++) {
          const listItemName = students[i].querySelector('h3').textContent;
@@ -129,8 +129,8 @@ function includeTheSearchBar  () {
 });
 };
 
-   showPage(studentList, 1);
-      appendPageLinks(studentList);
+showPage(studentList, 1);
+appendPageLinks(studentList);
 includeTheSearchBar();
 
 
