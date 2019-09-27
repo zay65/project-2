@@ -42,7 +42,7 @@ const appendPageLinks = (list) => {
    const li = ul.children;
    div.appendChild(ul);
 
-   for (let i = 0; i <= pagesNeeded; i ++) {
+   for (let i = 0; i < pagesNeeded; i ++) {
    const li = document.createElement("li");
    ul.appendChild(li);
    const a = document.createElement("a");
