@@ -17,9 +17,9 @@ console.log(studentList)
 
 
 const showPage = (list, page) => {
-const startIndex =(page * itemsEachPage ) - itemsEachPage;
-const endIndex = page * itemsEachPage;
-for (let i = 0; i < list.length; i++) {
+   const startIndex =(page * itemsEachPage ) - itemsEachPage;
+   const endIndex = page * itemsEachPage;
+   for (let i = 0; i < list.length; i++) {
    if (i >= startIndex && i <= endIndex) {
      list[i].style.display = "block";
    } else {
@@ -36,13 +36,13 @@ for (let i = 0; i < list.length; i++) {
 
    
 const appendPageLinks = (list) => { 
-const pagesNeeded = Math.ceil(list.length / itemsEachPage);
-const div = document.createElement('div');
-div.className = 'page';
-page.appendChild(div);
-const ul = document.createElement('ul');
-const li = ul.children;
-div.appendChild(ul);
+   const pagesNeeded = Math.ceil(list.length / itemsEachPage);
+      const div = document.createElement('div');
+   div.className = 'page';
+   page.appendChild(div);
+   const ul = document.createElement('ul');
+   const li = ul.children;
+   div.appendChild(ul);
 
 for (let i = 0; i <= pagesNeeded; i ++) {
    const li = document.createElement("li");
@@ -68,45 +68,24 @@ ul.addEventListener('click', (e) => {
    e.target.className = 'active';
 
 });
- var includeTheSearchBar
-function includeTheSearchBar  () {
-   const pageHeader = document.querySelector('.page-header');
-   const searchHeaderDiv = document.createElement('div');
-   const search = document.createElement('input');
-   const button = document.createElement('button');
 
-   searchHeaderDiv.className = 'student-search';
-   search.placeholder = 'Search for the students';
-   button.textContent = 'Search';
- 
-   pageHeader.appendChild(searchHeaderDiv);
-   searchHeaderDiv.appendChild(search);
-   searchHeaderDiv.appendChild(button);
- button.addEventListener ('click' , (event) => {
-      event.preventDefault();
-      makeSearch(search, studentList);
-   });
-   search.addEventListener('keyup', () => {
-      makeSearch(search, studentList);
-   });
- };
  function searchingFor(search,students) { 
-   const separate = search.value.toLowerCase();
-   const arr = []; 
-   noResultDiv.textContent = '';
-   if (search.value){  
+      const separate = search.value.toLowerCase();
+      const arr = []; 
+      noResultDiv.textContent = '';
+      if (search.value){  
       return (studentList);
    }
    for (let i = 0; i < students.length; i++) {
-      const listItemName = students[i].querySelector('h3').textContent;
-      students[i].style.display = 'none';
-      if (listItemName.toLowerCase().includes(filter)) {
+         const listItemName = students[i].querySelector('h3').textContent;
+         students[i].style.display = 'none';
+         if (listItemName.toLowerCase().includes(filter)) {
          students[i].style.display = '';
          arr.push(students[i]);
       }  
    } 
    if(arr.length === 0){
-      noResultDiv.textContent = 'Data not found';
+         noResultDiv.textContent = 'Data not found';
      
    };
   
@@ -117,17 +96,38 @@ function includeTheSearchBar  () {
 
 
 const pageRedo = (arr) => {
-   const pageLinks = document.querySelector('.pagination');
-   divPage.removeChild(pageLinks);
-   showPage(arr,1);
-   appendPageLinks(arr);
+      const pageLinks = document.querySelector('.pagination');
+      divPage.removeChild(pageLinks);
+      showPage(arr,1);
+      appendPageLinks(arr);
 } 
 
 
 
 }
 
+var includeTheSearchBar
+function includeTheSearchBar  () {
+const pageHeader = document.querySelector('.page-header');
+const searchHeaderDiv = document.createElement('div');
+const search = document.createElement('input');
+const button = document.createElement('button');
 
+searchHeaderDiv.className = 'student-search';
+search.placeholder = 'Search for the students';
+button.textContent = 'Search';
+
+pageHeader.appendChild(searchHeaderDiv);
+searchHeaderDiv.appendChild(search);
+searchHeaderDiv.appendChild(button);
+button.addEventListener ('click' , (event) => {
+   event.preventDefault();
+   makeSearch(search, studentList);
+});
+search.addEventListener('keyup', () => {
+   makeSearch(search, studentList);
+});
+};
 
 showPage(studentList, 1);
 appendPageLinks(studentList);
