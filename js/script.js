@@ -20,7 +20,7 @@ const showPage = (list, page) => {
    const startIndex =(page * itemsEachPage ) - itemsEachPage;
    const endIndex = page * itemsEachPage;
    for (let i = 0; i < list.length; i++) {
-   if (i >= startIndex && i <= endIndex) {
+      if (i >= startIndex && i <= endIndex) {
      list[i].style.display = "block";
    } else {
      list[i].style.display = "none";
@@ -108,29 +108,29 @@ const pageRedo = (arr) => {
 
 var includeTheSearchBar
 function includeTheSearchBar  () {
-const pageHeader = document.querySelector('.page-header');
-const searchHeaderDiv = document.createElement('div');
-const search = document.createElement('input');
-const button = document.createElement('button');
+      const pageHeader = document.querySelector('.page-header');
+      const searchHeaderDiv = document.createElement('div');
+         const search = document.createElement('input');
+      const button = document.createElement('button');
 
-searchHeaderDiv.className = 'student-search';
-search.placeholder = 'Search for the students';
-button.textContent = 'Search';
+   searchHeaderDiv.className = 'student-search';
+   search.placeholder = 'Search for the students';
+   button.textContent = 'Search';
 
-pageHeader.appendChild(searchHeaderDiv);
-searchHeaderDiv.appendChild(search);
-searchHeaderDiv.appendChild(button);
-button.addEventListener ('click' , (event) => {
+   pageHeader.appendChild(searchHeaderDiv);
+   searchHeaderDiv.appendChild(search);
+   searchHeaderDiv.appendChild(button);
+   button.addEventListener ('click' , (event) => {
    event.preventDefault();
    makeSearch(search, studentList);
 });
-search.addEventListener('keyup', () => {
+   search.addEventListener('keyup', () => {
    makeSearch(search, studentList);
 });
 };
 
-showPage(studentList, 1);
-appendPageLinks(studentList);
+   showPage(studentList, 1);
+      appendPageLinks(studentList);
 includeTheSearchBar();
 
 
