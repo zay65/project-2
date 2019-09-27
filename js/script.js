@@ -32,8 +32,6 @@ const showPage = (list, page) => {
 
 
 
-
-
    
 const appendPageLinks = (list) => { 
    const pagesNeeded = Math.ceil(list.length / itemsEachPage);
@@ -104,13 +102,14 @@ const pageRedo = (arr) => {
 
 
 
-}
+};
+
 
 var includeTheSearchBar
 function includeTheSearchBar  () {
       const pageHeader = document.querySelector('.page-header');
       const searchHeaderDiv = document.createElement('div');
-         const search = document.createElement('input');
+      const search = document.createElement('input');
       const button = document.createElement('button');
 
    searchHeaderDiv.className = 'student-search';
@@ -122,12 +121,13 @@ function includeTheSearchBar  () {
    searchHeaderDiv.appendChild(button);
    button.addEventListener ('click' , (event) => {
    event.preventDefault();
-   makeSearch(search, studentList);
+   searchingFor(search, studentList);
 });
    search.addEventListener('keyup', () => {
-   makeSearch(search, studentList);
+   searchingFor(search, studentList);
 });
 };
+
 
 showPage(studentList, 1);
 appendPageLinks(studentList);
