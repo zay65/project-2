@@ -36,7 +36,7 @@ const showPage = (list, page) => {
 const appendPageLinks = (list) => { 
    const pagesNeeded = Math.ceil(list.length / itemsEachPage);
    const div = document.createElement('div');
-   div.className = 'page';
+   div.className = "pagination";
    page.appendChild(div);
    const ul = document.createElement('ul');
    const li = ul.children;
@@ -54,18 +54,23 @@ const appendPageLinks = (list) => {
    a.textContent = i + 1;
 }
 
-   ul.addEventListener('click', (e) => {
-   for (let i = 0; i < ul.children.length; i++){
-   const a = li[i].firstElementChild;
-   if (a.className === 'active'){
-     a.classList.remove('active');
-      }
+ul.addEventListener('click', e => {
+   if (e.target.tagName === 'A') {
+     for (let i = 0; i < ul.children.length; i++) {
+       const a = li[i].firstElementChild;
+       if (a.className === 'active') {
+         a.classList.remove('active');
+       }
+     }
+ 
+     showPage(list, e.target.textContent);
+     e.target.className = 'active';
    }
-   
+ });
    showPage(list, e.target.textContent);
    e.target.className = 'active';
 
-});
+};
 
    function searchingFor(search,students) { 
    const separate = search.value.toLowerCase();
@@ -102,7 +107,7 @@ const pageRedo = (arr) => {
 
 
 
-};
+;
 
 
 var includeTheSearchBar
